@@ -36,11 +36,15 @@ pipeline {
             steps {
                 script {
                     sh "npm run build"
-                    archiveArtifacts artifacts: 'dist/**/*', fingerprint: true
+                    archiveArtifacts artifacts: 'dist/*', fingerprint: true
                 }
             }
         }
-
     }
 
-    
+    post {
+        always {
+            cleanWs()
+        }
+    }
+}
